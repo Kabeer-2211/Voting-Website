@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Home</title>
+</head>
+
+<body>
+    <%- include('components/nav'); %>
+        <div class="fluid-container hero d-flex align-items-center justify-content-center px-5">
+            <h1 class="quote text-light lh-md text-center"></h1>
+        </div>
+
+        <div class="container">
+            <div class="my-3 p-3 bg-body rounded shadow-sm">
+                <h6 class="border-bottom fs-3 pb-2 mb-0">Parties</h6>
+                <% if (locals.parties) { %>
+                    <% parties.forEach(party=> { %>
+                        <a href="/party-detail/<%= party._id %>"
+                            class="text-decoration-none d-flex mb-2 border text-body-secondary pt-3">
+                            <img class="mx-3" src="p_flag_image/<%= party.flag %>" alt="party flag image" width="45px"
+                                height="30px">
+                            <p class="pb-3 mb-0 small lh-sm border-bottom">
+                                <strong class="d-block text-gray-dark">@<%= party.partyName %></strong>
+                                <%= party.motive.slice(0, 130) %>...
+                            </p>
+                        </a>
+                        <% }) %>
+                            <% }; %>
+                                <small class="d-block text-end mt-3">
+                                    <a href="/parties" class="btn btn-sm btn-outline-success">All Parties</a>
+                                </small>
+            </div>
+        </div>
+
+        <%- include('components/footer'); %>
+            <script src="./../js/script.js"></script>
+</body>
+
+</html>
